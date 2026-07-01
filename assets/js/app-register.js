@@ -39,13 +39,15 @@ form.addEventListener('submit', async (e) => {
 
     try {
 
-        const respuesta = await usuarioController.crear(datos);
+        const respuesta = await usuarioController.registrarPublico(datos);
 
         if (!respuesta.ok) {
 
             const mensaje = String(respuesta.error || '');
 
             if (
+                mensaje.toLowerCase().includes('already registered') ||
+                mensaje.toLowerCase().includes('user already exists') ||
                 mensaje.includes('duplicate key') ||
                 mensaje.includes('usuarios_correo_key') ||
                 mensaje.includes('23505')
@@ -65,12 +67,19 @@ form.addEventListener('submit', async (e) => {
             return;
         }
 
+        // Si tu proyecto de Supabase tiene "Confirm email" activado,
+        // respuesta.data.session viene null hasta que el usuario confirme
+        // su correo; si está desactivado, ya queda logueado de una vez.
+        const requiereConfirmacion = !respuesta.data?.session;
+
         if (window.Swal) {
 
             await Swal.fire({
                 icon: 'success',
                 title: 'Registro exitoso',
-                text: 'Tu cuenta fue creada correctamente.',
+                text: requiereConfirmacion
+                    ? 'Revisa tu correo para confirmar tu cuenta antes de iniciar sesión.'
+                    : 'Tu cuenta fue creada correctamente.',
                 confirmButtonText: 'Ir al login'
             });
 

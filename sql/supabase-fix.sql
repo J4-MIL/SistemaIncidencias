@@ -19,4 +19,4 @@ CREATE TABLE IF NOT EXISTS public.notificaciones (
   fecha timestamp DEFAULT now()
 );
 
--- Si el esquema cache está obsoleto, vuelve a cargar la app o reinicia el proyecto Supabase.
+
