@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro | TechSolutions</title>
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body class="login-page">
+  <section class="login-hero">
+    <h1>Registro de Usuario</h1>
+    <p>Crea una cuenta para acceder al sistema de gestión de incidencias de soporte técnico multinivel.</p>
+    <div class="kpi-row">
+      <span class="pill">Supabase</span>
+      <span class="pill">PostgreSQL</span>
+      <span class="pill">Roles</span>
+    </div>
+  </section>
+
+  <main class="login-card register-card">
+    <h2>Crear cuenta</h2>
+    <p>Completa tus datos y luego inicia sesión.</p>
+
+    <div id="registerAlert"></div>
+
+    <form id="registerForm" autocomplete="off">
+      <div class="form-group">
+        <label for="nombre">Nombre completo</label>
+        <input class="input" id="nombre" name="nombre" type="text" placeholder="Ej. Carla Saavedra" required>
+      </div>
+
+      <div class="form-group">
+        <label for="correo">Correo</label>
+        <input class="input" id="correo" name="correo" type="email" placeholder="usuario@empresa.com" required>
+      </div>
+
+      <div class="grid-2 compact-grid">
+        <div class="form-group">
+          <label for="contrasena">Contraseña</label>
+          <input class="input" id="contrasena" name="contrasena" type="password" minlength="6" placeholder="Mínimo 6 caracteres" required>
+        </div>
+        <div class="form-group">
+          <label for="confirmar">Confirmar contraseña</label>
+          <input class="input" id="confirmar" name="confirmar" type="password" minlength="6" required>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="rol">Rol</label>
+        <select id="rol" name="rol" required>
+          <option value="EMPLEADO">Empleado</option>
+          <option value="TECNICO">Técnico</option>
+          <option value="ADMIN">Administrador</option>
+        </select>
+      </div>
+
+      <div id="camposEmpleado" class="form-group">
+        <label for="area">Área</label>
+        <input class="input" id="area" name="area" type="text" placeholder="Ej. Ventas, Sistemas, Contabilidad">
+      </div>
+
+      <div id="camposTecnico" class="hidden-panel">
+        <div class="grid-2 compact-grid">
+          <div class="form-group">
+            <label for="especialidad">Especialidad</label>
+            <input class="input" id="especialidad" name="especialidad" type="text" placeholder="Ej. Redes, Hardware, Software">
+          </div>
+          <div class="form-group">
+            <label for="nivel_soporte">Nivel de soporte</label>
+            <select id="nivel_soporte" name="nivel_soporte">
+              <option value="1">Nivel 1</option>
+              <option value="2">Nivel 2</option>
+              <option value="3">Nivel 3</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary w-full" id="btnRegister">Registrarme</button>
+    </form>
+
+    <div class="login-actions">
+      <span>¿Ya tienes cuenta?</span>
+      <a href="login.html">Volver al login</a>
+    </div>
+  </main>
+
+  <script type="module" src="assets/js/app-register.js"></script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Login | TechSolutions</title>
+<link rel="stylesheet" href="assets/css/styles.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11">
+</script>
+</head>
+<body class="login-page">
+<section class="login-hero">
+<h1>Sistema Automatizado de Incidencias</h1>
+<p>Plataforma empresarial para registrar, asignar, atender y controlar incidencias de soporte técnico multinivel conectada a Supabase/PostgreSQL.</p>
+<div class="kpi-row">
+<span class="pill">Base de datos en nube</span>
+<span class="pill">Roles</span>
+<span class="pill">Seguimiento</span>
+</div>
+</section>
+<main class="login-card">
+<h2>Iniciar sesión</h2>
+<p>TechSolutions S.A.C.</p>
+<div id="loginAlert">
+</div>
+<form id="loginForm">
+<div class="form-group">
+<label for="correo">Correo</label>
+<input class="input" id="correo" type="email" name="correo" autocomplete="username" value="admin@empresa.com">
+</div>
+<div class="form-group">
+<label for="contrasena">Contraseña</label>
+<div class="password-row">
+<input class="input" type="password" name="contrasena" id="contrasena" autocomplete="current-password" value="admin123">
+<button type="button" class="btn btn-outline" id="togglePass">Ver</button>
+</div>
+</div>
+<button type="submit" class="btn btn-primary w-full" id="btnLogin">Ingresar</button>
+</form>
+<div class="login-actions">
+<span>¿No tienes cuenta?</span>
+<a href="register.html">Crear cuenta</a>
+</div>
+<p class="footer-note">Usuarios de prueba: admin@empresa.com / admin123</p>
+</main>
+<script type="module" src="assets/js/app-login.js">
+</script>
+</body>
+</html>
