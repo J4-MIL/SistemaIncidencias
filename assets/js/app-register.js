@@ -2,21 +2,7 @@ import { usuarioController } from './controllers/usuarioController.js';
 
 const form = document.getElementById('registerForm');
 const alertBox = document.getElementById('registerAlert');
-const rolSelect = document.getElementById('rol');
-const camposEmpleado = document.getElementById('camposEmpleado');
-const camposTecnico = document.getElementById('camposTecnico');
 const btnRegister = document.getElementById('btnRegister');
-
-function mostrarCamposPorRol() {
-    const rol = rolSelect.value;
-
-    camposEmpleado.style.display = rol === 'EMPLEADO' ? 'block' : 'none';
-    camposTecnico.style.display = rol === 'TECNICO' ? 'block' : 'none';
-
-    document.getElementById('area').required = rol === 'EMPLEADO';
-    document.getElementById('especialidad').required = rol === 'TECNICO';
-    document.getElementById('nivel_soporte').required = rol === 'TECNICO';
-}
 
 function mostrarError(mensaje) {
     alertBox.innerHTML = `
@@ -25,25 +11,6 @@ function mostrarError(mensaje) {
         </div>
     `;
 }
-
-function limpiarFormulario(datos) {
-
-    if (datos.rol !== 'TECNICO') {
-        datos.especialidad = null;
-        datos.nivel_soporte = null;
-    }
-
-    if (datos.rol !== 'EMPLEADO') {
-        datos.area = datos.rol === 'ADMIN'
-            ? 'Administración'
-            : null;
-    }
-
-    return datos;
-}
-
-rolSelect.addEventListener('change', mostrarCamposPorRol);
-mostrarCamposPorRol();
 
 form.addEventListener('submit', async (e) => {
 
@@ -62,9 +29,10 @@ form.addEventListener('submit', async (e) => {
 
     delete datos.confirmar;
 
+    // El registro público solo crea cuentas de tipo EMPLEADO.
+    // Cuentas de TECNICO o ADMIN se crean desde el panel de administración (usuarios.html).
+    datos.rol = 'EMPLEADO';
     datos.activo = true;
-
-    limpiarFormulario(datos);
 
     btnRegister.disabled = true;
     btnRegister.textContent = 'Registrando...';
