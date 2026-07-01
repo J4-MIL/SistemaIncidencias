@@ -1,0 +1,80 @@
+/* Hereda todo el sistema de diseño (colores, sidebar, navbar, cards, badges, botones) */
+@import url('./styles.css');
+
+/* =========================================================
+   Página de Seguimientos — timeline de comentarios
+   ========================================================= */
+
+.inc-card{
+  margin-bottom: 14px;
+}
+
+.inc-card-head{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 0 0 4px;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 16px;
+}
+
+.inc-card-head .codigo{
+  color: var(--muted);
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+/* Línea de tiempo */
+.timeline{
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.timeline-item{
+  position: relative;
+  border-left: 3px solid var(--dorado);
+  padding: 4px 0 10px 14px;
+  margin: 6px 0;
+}
+
+.timeline-item::before{
+  content: '';
+  position: absolute;
+  left: -6px;
+  top: 6px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--dorado);
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 1px var(--line);
+}
+
+.timeline-user{
+  font-weight: 800;
+  color: var(--text);
+  font-size: 14px;
+}
+
+.timeline-date{
+  color: var(--muted);
+  font-size: 12.5px;
+  margin-left: 6px;
+}
+
+.timeline-comment{
+  margin: 4px 0 0;
+  font-size: 14px;
+  color: var(--text);
+  line-height: 1.5;
+}
+
+.timeline-empty{
+  color: var(--muted);
+  font-size: 13.5px;
+  margin: 6px 0 2px;
+}
