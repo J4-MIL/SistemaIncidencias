@@ -12,11 +12,16 @@
 <div class="auth-wrapper">
   <div class="auth-box">
 
-    <!-- Panel decorativo -->
+    <!-- Panel decorativo: monitor de operaciones -->
     <div class="auth-deco" aria-hidden="true">
-      <div class="deco-ring deco-ring--1"></div>
-      <div class="deco-ring deco-ring--2"></div>
       <div class="deco-content">
+
+        <div class="ops-status">
+          <span class="ops-status-dot"></span>
+          <span class="ops-status-text">Sistema operativo</span>
+          <span class="ops-uptime">99.9% uptime</span>
+        </div>
+
         <div class="deco-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
             <path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3Z"/>
@@ -24,9 +29,52 @@
           </svg>
         </div>
         <p class="deco-logo">TechSolutions</p>
-        <p class="deco-sub">Sistema de Incidencias</p>
-        <div class="deco-divider"></div>
+        <p class="deco-sub">Incident Management System</p>
         <p class="deco-tagline">Gestiona, asigna y da seguimiento a incidencias de soporte técnico en un solo lugar.</p>
+
+        <div class="ops-feed">
+          <p class="ops-feed-label">— Feed en vivo —</p>
+
+          <div class="ops-ticket ops-ticket--critical">
+            <span class="ops-ticket-sev">P1</span>
+            <div class="ops-ticket-body">
+              <p class="ops-ticket-title">Servidor de base de datos caído</p>
+              <p class="ops-ticket-meta">#1042 · hace 2 min</p>
+            </div>
+          </div>
+
+          <div class="ops-ticket ops-ticket--warning">
+            <span class="ops-ticket-sev">P2</span>
+            <div class="ops-ticket-body">
+              <p class="ops-ticket-title">VPN con latencia elevada</p>
+              <p class="ops-ticket-meta">#1041 · hace 14 min</p>
+            </div>
+          </div>
+
+          <div class="ops-ticket ops-ticket--ok">
+            <span class="ops-ticket-sev">P3</span>
+            <div class="ops-ticket-body">
+              <p class="ops-ticket-title">Impresora sin tóner — piso 3</p>
+              <p class="ops-ticket-meta">#1039 · resuelto</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="ops-stats">
+          <div class="ops-stat">
+            <span class="ops-stat-num">12</span>
+            <span class="ops-stat-label">Abiertas</span>
+          </div>
+          <div class="ops-stat">
+            <span class="ops-stat-num">5</span>
+            <span class="ops-stat-label">Progreso</span>
+          </div>
+          <div class="ops-stat">
+            <span class="ops-stat-num">27</span>
+            <span class="ops-stat-label">Resueltas hoy</span>
+          </div>
+        </div>
+
       </div>
     </div>
 
