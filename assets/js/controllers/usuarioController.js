@@ -24,10 +24,6 @@ export const usuarioController = {
     return await usuarioService.listar();
   },
 
-  // Usado por el registro público (register.html). Siempre crea EMPLEADO
-  // (el trigger en la base de datos lo fuerza así, sin importar qué se
-  // mande aquí) y la contraseña queda hasheada por Supabase Auth, nunca
-  // en texto plano en la tabla usuarios.
   async registrarPublico(datos) {
     const v = validarUsuario({ ...datos, rol: 'EMPLEADO' });
     if (v) return { ok: false, error: v };
@@ -40,12 +36,6 @@ export const usuarioController = {
     });
   },
 
-  // Usado por el panel de administración (usuarios.html) para crear
-  // cuentas de EMPLEADO, TECNICO o ADMIN con contraseña definida por el
-  // admin. Esto requiere el Admin API de Supabase (service role key),
-  // que nunca debe vivir en el navegador -> se delega a una Edge
-  // Function ('admin-create-user'). Ver sql/functions/admin-create-user
-  // para el código de esa función y cómo desplegarla.
   async crear(datos) {
     const v = validarUsuario(datos);
     if (v) return { ok: false, error: v };
@@ -72,10 +62,6 @@ export const usuarioController = {
   },
 
   async actualizar(id, datos) {
-    // La contraseña ya NO se actualiza por aquí: usuarios.contrasena
-    // fue eliminada. Para que un admin restablezca la contraseña de
-    // otra persona usa enviarRestablecerContrasena(); para que alguien
-    // cambie la suya propia, usa perfilController con supabase.auth.updateUser().
     const payload = {
       nombre: datos.nombre,
       correo: datos.correo,
