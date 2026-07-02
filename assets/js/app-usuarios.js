@@ -96,41 +96,73 @@ toast('Estado actualizado');
 }
 
 function modalUsuario(){
- openModal('Registrar usuario',`<form id="formUsuario">${
-input('nombre','Nombre completo')
-}
-${
-input('correo','Correo','email')
-}
-${
-input('contrasena','Contraseña','password')
-}
-${
-select('rol','Rol',['ADMIN','EMPLEADO','TECNICO'])
-}
-<div id="extras"></div><button class="btn btn-primary w-full">Guardar usuario</button></form>`);
- const rol=document.getElementById('rol');
- const extras=()=>{
-document.getElementById('extras').innerHTML=rol.value==='EMPLEADO'?input('area','Área'):rol.value==='TECNICO'?input('area','Área')+input('especialidad','Especialidad')+select('nivel_soporte','Nivel soporte',[1,2,3]):''
-}
-;
- rol.onchange=extras;
- extras();
- document.getElementById('formUsuario').onsubmit=async e=>{
-e.preventDefault();
- const datos=formData(e.target);
- datos.activo=true;
- const r=await usuarioController.crear(datos);
- if(r.ok){
-toast('Usuario registrado');
- closeModal();
- cargar();
+  openModal('Registrar usuario', `
+    <form id="formUsuario">
+      ${input('nombre', 'Nombre completo')}
+      ${input('correo', 'Correo', 'email')}
+      ${input('contrasena', 'Contraseña', 'password')}
+      ${select('rol', 'Rol', ['ADMIN', 'EMPLEADO', 'TECNICO'])}
+      
+      <!-- Campos dinámicos ocultos/visibles por CSS para no romper el DOM -->
+      <div id="campo-area" style="display:none;">
+        ${input('area', 'Área')}
+      </div>
+      <div id="campos-tecnico" style="display:none;">
+        ${input('especialidad', 'Especialidad')}
+        ${select('nivel_soporte', 'Nivel soporte', [1, 2, 3])}
+      </div>
+      
+      <button class="btn btn-primary w-full" style="margin-top: 15px;">Guardar usuario</button>
+    </form>
+  `);
 
-}
- else error(r.error);
+  const rol = document.getElementById('rol');
+  const divArea = document.getElementById('campo-area');
+  const divTecnico = document.getElementById('campos-tecnico');
 
-}
-;
+  // Función limpia para mostrar/ocultar contenedores sin sobreescribir el HTML
+  const alternarCampos = () => {
+    const valorRol = rol.value;
+    
+    if (valorRol === 'EMPLEADO') {
+      divArea.style.display = 'block';
+      divTecnico.style.display = 'none';
+    } else if (valorRol === 'TECNICO') {
+      divArea.style.display = 'block';
+      divTecnico.style.display = 'block';
+    } else {
+      divArea.style.display = 'none';
+      divTecnico.style.display = 'none';
+    }
+  };
 
-}
+  rol.onchange = alternarCampos;
+  alternarCampos(); // Ejecución inicial
 
+  document.getElementById('formUsuario').onsubmit = async e => {
+    e.preventDefault();
+    
+    // Recolectamos los datos de forma segura
+    const datos = formData(e.target);
+    datos.activo = true;
+
+    // Limpieza preventiva: si no es Técnico o Empleado, enviamos nulls explícitos
+    if (rol.value === 'ADMIN') {
+      datos.area = null;
+      datos.especialidad = null;
+      datos.nivel_soporte = 1;
+    } else if (rol.value === 'EMPLEADO') {
+      datos.especialidad = null;
+      datos.nivel_soporte = 1;
+    }
+
+    const r = await usuarioController.crear(datos);
+    if(r.ok){
+      toast('Usuario registrado con éxito');
+      closeModal();
+      cargar();
+    } else {
+      error(r.error);
+    }
+  };
+}

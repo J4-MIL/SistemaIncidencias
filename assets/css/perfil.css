@@ -1,0 +1,239 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@400;600;700;900&display=swap');
+
+:root{
+  --primary:        #142b68;
+  --primary-dark:   #232782;
+  --bg:             #F7F1E6;
+  --card:           #FFFFFF;
+  --text:           #0c0c0c;
+  --muted:          #8A6F52;
+  --line:           #E7DCC6;
+  --danger:         #C1440E;
+  --success:        #276749;
+  --warning:        #B4790C;
+  --sidebar:        #000000;
+  --sidebar2:       #194161;
+  --dorado:         #D4963A;
+  --shadow:         0 16px 40px rgba(43, 26, 15, .10);
+  --radius:         14px;
+}
+
+*{ box-sizing: border-box; }
+
+body{
+  margin: 0;
+  font-family: 'Lato', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+a{ text-decoration: none; color: inherit; }
+.hidden{ display: none !important; }
+
+/* ── Layout general ── */
+.app{
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ── Sidebar ── */
+.sidebar{
+  width: 265px;
+  background: var(--sidebar);
+  color: #F5ECD7;
+  padding: 20px 16px;
+  position: fixed;
+  height: 100vh;
+  overflow: auto;
+  border-right: 1px solid rgba(212, 150, 58, 0.15);
+  z-index: 20;
+}
+
+.brand{
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 24px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid rgba(212, 150, 58, 0.15);
+}
+
+.brand-icon{
+  height: 42px;
+  width: 42px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--primary), var(--dorado));
+  display: grid;
+  place-items: center;
+  font-weight: 900;
+  color: #fff;
+  font-family: 'Playfair Display', serif;
+}
+
+.brand-text h3{
+  margin: 0;
+  font-family: 'Playfair Display', Georgia, serif;
+  color: var(--dorado);
+}
+
+.brand-text small{ color: #C4A882; }
+
+.menu-title{
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: #A0856A;
+  margin: 18px 10px 8px;
+}
+
+.menu a{
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 11px 12px;
+  border-radius: 10px;
+  margin-bottom: 5px;
+  color: #E4D5B7;
+  font-weight: 600;
+  font-size: 14.5px;
+  transition: background .18s ease, color .18s ease;
+}
+
+.menu a:hover,
+.menu a.active{
+  background: var(--sidebar2);
+  color: #fff;
+}
+
+.menu a.active{
+  box-shadow: inset 3px 0 0 var(--primary);
+}
+
+/* ── Contenido ── */
+.content{
+  margin-left: 265px;
+  width: calc(100% - 265px);
+}
+
+.navbar{
+  height: 72px;
+  background: #fff;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 28px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.navbar h1{
+  font-size: 21px;
+  margin: 0;
+  font-family: 'Playfair Display', Georgia, serif;
+  color: var(--text);
+}
+
+.navbar > div:first-child{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.navbar small{ color: var(--muted); }
+
+.icon-btn{
+  border: 1px solid var(--line);
+  background: #fff;
+  border-radius: 10px;
+  padding: 8px;
+  cursor: pointer;
+  transition: background .15s ease, border-color .15s ease;
+}
+.icon-btn:hover{ background: #FAF4E7; border-color: var(--dorado); }
+
+.userbox{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.avatar{
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #F6E4C9;
+  color: var(--primary-dark);
+  display: grid;
+  place-items: center;
+  font-weight: 900;
+}
+
+.page{ padding: 28px; }
+
+/* ── Tarjeta genérica ── */
+.card{
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 24px;
+}
+
+.card h2{
+  margin: 0 0 6px;
+  font-size: 20px;
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+.card p{
+  margin: 0 0 12px;
+  color: var(--muted);
+  font-size: 14.5px;
+}
+
+/* ── Tarjeta de perfil ── */
+.profile-card{
+  display: flex;
+  gap: 22px;
+  align-items: center;
+  max-width: 640px;
+}
+
+.profile-card .pill{
+  margin-right: 8px;
+  display: inline-block;
+}
+
+.footer-note{
+  color: var(--muted);
+  font-size: 13px;
+  margin-top: 22px;
+}
+
+/* ── Pill (rol / área) ── */
+.pill{
+  padding: 7px 12px;
+  background: #F6E4C9;
+  border-radius: 999px;
+  color: var(--primary-dark);
+  font-weight: 700;
+  font-size: 12.5px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px){
+  .sidebar{
+    left: -265px;
+    transition: left .2s ease;
+  }
+  body.sidebar-open .sidebar{ left: 0; }
+  .content{ margin-left: 0; width: 100%; }
+
+  .profile-card{
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+  }
+}
