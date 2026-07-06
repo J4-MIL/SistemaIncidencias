@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Registro | TechSolutions</title>
-<link rel="stylesheet" href="assets/css/styles.css">
+<title>Login | TechSolutions</title>
+<link rel="stylesheet" href="../assets/css/styles.css">
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body class="auth-login-page">
@@ -30,7 +30,7 @@
         </div>
         <p class="deco-logo">TechSolutions</p>
         <p class="deco-sub">Incident Management System</p>
-        <p class="deco-tagline">Crea tu cuenta para registrar, asignar y dar seguimiento a incidencias de soporte técnico.</p>
+        <p class="deco-tagline">Gestiona, asigna y da seguimiento a incidencias de soporte técnico en un solo lugar.</p>
 
         <div class="ops-feed">
           <p class="ops-feed-label">— Feed en vivo —</p>
@@ -79,71 +79,44 @@
     </div>
 
     <!-- Panel del formulario -->
-    <div class="auth-form-panel auth-form-panel--scroll">
+    <div class="auth-form-panel">
 
       <div class="auth-tabs" role="tablist">
-        <a href="login.html" role="tab" aria-selected="false" class="auth-tab">Iniciar sesión</a>
-        <button type="button" role="tab" aria-selected="true" class="auth-tab auth-tab--active">Registrarse</button>
+        <button type="button" role="tab" aria-selected="true" class="auth-tab auth-tab--active">Iniciar sesión</button>
+        <a href="register.html" role="tab" aria-selected="false" class="auth-tab">Registrarse</a>
       </div>
 
-      <h2 class="auth-title">Crea tu cuenta</h2>
-      <p class="auth-hint">Completa tus datos y luego inicia sesión.</p>
+      <h2 class="auth-title">¡Bienvenido de vuelta!</h2>
+      <p class="auth-hint">Ingresa tus credenciales para acceder al sistema</p>
 
-      <div id="registerAlert"></div>
+      <div id="loginAlert"></div>
 
-      <form id="registerForm" autocomplete="off" novalidate>
+      <form id="loginForm" novalidate>
 
-        <!-- Nombre -->
-        <div class="auth-field">
-          <span class="auth-field__icon">
-            <svg class="field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
-            </svg>
-          </span>
-          <input class="input" id="nombre" name="nombre" type="text" placeholder="Nombre completo" required>
-        </div>
-
-        <!-- Correo -->
         <div class="auth-field">
           <span class="auth-field__icon">
             <svg class="field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
               <rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
             </svg>
           </span>
-          <input class="input" id="correo" name="correo" type="email" placeholder="usuario@empresa.com" required>
+          <input type="email" id="correo" name="correo" placeholder="Correo electrónico" autocomplete="username" value="admin@empresa.com" required>
         </div>
 
-        <!-- Contraseña / Confirmar -->
-        <div class="auth-grid-2">
-          <div class="auth-field">
-            <span class="auth-field__icon">
-              <svg class="field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-              </svg>
-            </span>
-            <input class="input" id="contrasena" name="contrasena" type="password" minlength="6" placeholder="Contraseña" required>
-          </div>
-          <div class="auth-field">
-            <span class="auth-field__icon">
-              <svg class="field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-              </svg>
-            </span>
-            <input class="input" id="confirmar" name="confirmar" type="password" minlength="6" placeholder="Confirmar" required>
-          </div>
+        <div class="auth-field">
+          <span class="auth-field__icon">
+            <svg class="field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+            </svg>
+          </span>
+          <input type="password" id="contrasena" name="contrasena" placeholder="Contraseña" autocomplete="current-password" value="admin123" required>
+          <button type="button" id="togglePass" class="auth-field__toggle">Ver</button>
         </div>
 
-        <!-- Área (el registro público siempre crea usuarios con rol EMPLEADO) -->
-        <div class="form-group">
-          <label for="area">Área</label>
-          <input class="input" id="area" name="area" type="text" placeholder="Ej. Ventas, Sistemas, Contabilidad" required>
-        </div>
-
-        <button type="submit" class="btn-main" id="btnRegister">
+        <button type="submit" class="btn-main" id="btnLogin">
           <svg style="width:18px;height:18px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
           </svg>
-          Registrarme
+          Ingresar
         </button>
       </form>
 
@@ -151,12 +124,12 @@
         <span class="orn-line"></span><span class="orn-symbol">✦</span><span class="orn-line"></span>
       </div>
 
-      <p class="auth-toggle">¿Ya tienes cuenta? <a href="login.html">Inicia sesión</a></p>
+      <p class="auth-toggle">¿No tienes una cuenta? <a href="register.html">Regístrate</a></p>
     </div>
 
   </div>
 </div>
 
-<script type="module" src="assets/js/app-register.js"></script>
+<script type="module" src="../assets/js/app-login.js"></script>
 </body>
 </html>
